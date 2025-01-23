@@ -1,0 +1,19 @@
+[project]
+name = "wolt-backend-internship-2025"
+version = "1.0.0"
+description = "My implementation of the DOPC service. Hope I get the internship!"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.7",
+    "httpx>=0.28.1",
+    "uvicorn>=0.34.0",
+]
+authors = [
+  {name = "Anik Ghosh", email = "anik.ghosh@rwth-aachen.de"}
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+]
