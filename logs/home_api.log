@@ -1,0 +1,6 @@
+2025-01-25 15:39:01,991 - INFO - HTTP Request: GET https://consumer-api.development.dev.woltapi.com/home-assignment-api/v1/venues/home-assignment-venue-helinki/static "HTTP/1.1 404 Not Found"
+2025-01-25 15:39:01,992 - ERROR - Static URL returned 400 for slug: home-assignment-venue-helinki
+2025-01-25 15:39:07,579 - INFO - HTTP Request: GET https://consumer-api.development.dev.woltapi.com/home-assignment-api/v1/venues/home-assignment-venue-helsinki/static "HTTP/1.1 200 OK"
+2025-01-25 15:39:07,581 - INFO - Static URL returned 200 for slug: home-assignment-venue-helsinki
+2025-01-25 15:39:08,336 - INFO - HTTP Request: GET https://consumer-api.development.dev.woltapi.com/home-assignment-api/v1/venues/home-assignment-venue-helsinki/dynamic "HTTP/1.1 200 OK"
+2025-01-25 15:39:08,339 - INFO - Dynamic URL returned 200 for slug: home-assignment-venue-helsinki
