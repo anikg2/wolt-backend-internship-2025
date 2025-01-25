@@ -53,9 +53,9 @@ def test_computeDeliveryFeeAndSurcharge():
     assert surcharge == expected_surcharge
 
 # Test that a value error is raised when the delivery distance exceeds the limit
-def test_computeDeliveryFeeAndSurcharge_exceeds_range():
+def test_computeDeliveryFeeAndSurcharge_deliveryRangeExceeded():
     cart_value = 1200
-    distance = 4000  # Exceeds the maximum range
+    distance = 4000  # Exceeds the maximum delivery limit.
     minimum_order_value = 1000.0
     delivery_base_price = 200.0
     distance_ranges = [

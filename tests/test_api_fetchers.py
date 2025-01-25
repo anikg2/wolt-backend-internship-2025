@@ -17,9 +17,9 @@ async def test_fetchStaticData_success():
     assert isinstance(result[1], (int, float))
 
 @pytest.mark.asyncio
-async def test_fetchStaticData_invalid_slug():
+async def test_fetchStaticData_invalidSlug():
     # Use an invalid slug to simulate a failure
-    # Expecting 404 nor found
+    # Expecting 404 not found from Home Assignment API
     venue_slug = "home-assignment-venue-delhi"
     with pytest.raises(HTTPException) as exc_info:
         await fetchStaticData(venue_slug)
@@ -39,9 +39,9 @@ async def test_fetchDynamicData_success():
     assert isinstance(result[2], list)  # Distance ranges should be a list
 
 @pytest.mark.asyncio
-async def test_fetchDynamicData_invalid_slug():
+async def test_fetchDynamicData_invalidSlug():
     # Using an invalid slug to simulate a failure
-    # Expecting 404 Not found
+    # Expecting 404 Not found from Home Assignment API
     venue_slug = "home-assignment-venue-potato"
     with pytest.raises(HTTPException) as exc_info:
         await fetchDynamicData(venue_slug)

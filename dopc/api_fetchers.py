@@ -41,11 +41,11 @@ async def fetchStaticData(venue_slug: str):
             return venue_coordinates
         # Otherwise, raise an exception because the value of venue_slug is incorrect
         else:
-            logging.error(f"Static URL returned 400 for slug: {venue_slug}")
+            logging.error(f"Static URL returned {response.status_code} for slug: {venue_slug}")
             raise HTTPException(status_code=response.status_code, detail=f"Error fetching data from Home Assignment API static URL. Please check the value of venue_slug.")
     except httpx.RequestError as e:
         # Handle any errors of Home Assignment API
-        logging.error(f"Static URL returned 500 for slug: {venue_slug}")
+        logging.error(f"Static URL returned 500 code for slug: {venue_slug}")
         raise HTTPException(status_code=500, detail=f"Error during request to Home Assignment Static API. Server returned: {e}")
     
 async def fetchDynamicData(venue_slug: str):
@@ -76,9 +76,9 @@ async def fetchDynamicData(venue_slug: str):
             return minimum_order_value, delivery_base_price, distance_ranges
         # Otherwise, raise an exception because the value of venue_slug is incorrect
         else:
-            logging.error(f"Dynamic URL returned 400 for slug: {venue_slug}")
+            logging.error(f"Dynamic URL returned {response.status_code} for slug: {venue_slug}")
             raise HTTPException(status_code=response.status_code, detail=f"Error fetching data from Home Assignment API dynamic URL. Please check the value of venue_slug.")
     except httpx.RequestError as e:
         # Handle any errors of Home Assignment API
-        logging.error(f"Dynamic URL returned 500 for slug: {venue_slug}")
+        logging.error(f"Dynamic URL returned 500 code for slug: {venue_slug}")
         raise HTTPException(status_code=500, detail=f"Error during request to Home Assignment Dynamic API. Server returned: {e}")
