@@ -77,7 +77,7 @@ async def fetchDynamicData(venue_slug: str):
         # Otherwise, raise an exception because the value of venue_slug is incorrect
         else:
             logging.error(f"Dynamic URL returned {response.status_code} for slug: {venue_slug}")
-            raise HTTPException(status_code=response.status_code, detail=f"Error fetching data from Home Assignment API dynamic URL. Please check the value of venue_slug.")
+            raise HTTPException(status_code=response.status_code, detail="Error fetching data from Home Assignment API dynamic URL. Please check the value of venue_slug.")
     except httpx.RequestError as e:
         # Handle any errors of Home Assignment API
         logging.error(f"Dynamic URL returned 500 code for slug: {venue_slug}")

@@ -1,4 +1,0 @@
-- Make sure that the GET request to DOPC is valid
-- Make sure that the GET call to the static URL is valid
-- Make sure that the GET call to the dynamic URL is valid
-- Run tests to ensure that the delivery cost is computed correctly
