@@ -2,7 +2,7 @@
 This file contains helper functions for the DOPC module. Separating these helper functions ensures modularity and assists with maintaibility.
 """
 import math
-from config import HOME_API_BASE, DOPC_DEFAULT_PORT
+from dopc.config import HOME_API_BASE, DOPC_DEFAULT_PORT
 
 def getStaticInformationURL(venue_slug: str) -> str:
     """

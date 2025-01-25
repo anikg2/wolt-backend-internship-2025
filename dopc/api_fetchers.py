@@ -4,14 +4,14 @@ Modularizing the application by separating these functions helps to test and mai
 """
 import httpx
 from fastapi import HTTPException
-from helpers import getStaticInformationURL, getDynamicInformationURL
+from dopc.helpers import getStaticInformationURL, getDynamicInformationURL
 
 # For logging requests and error messages
 import os
 if not os.path.exists('logs'):
     os.mkdir('logs')
 import logging
-from config import DEFAULT_LOG_DIRECTORY
+from dopc.config import DEFAULT_LOG_DIRECTORY
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s',
                     handlers=[logging.FileHandler(f'{DEFAULT_LOG_DIRECTORY}/home_api.log')])  # Log file will be created in 'logs' directory
