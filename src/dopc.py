@@ -2,7 +2,7 @@
 This file contains the code for the DOPC service
 """
 from fastapi import FastAPI, HTTPException, Query
-
+import argparse # For manual port input
 import uvicorn
 from helpers import getServicePort, computeDistance, computeDeliveryFeeAndSurcharge
 from api_fetchers import fetchStaticData, fetchDynamicData
@@ -32,22 +32,26 @@ async def getDeliveryOrderPrice(
     # Handling of invalid or missing parameters
     invalid_params = {}
     
+    # venue_slug is invalid if it is empty or unspecified
     if not venue_slug:
         invalid_params["venue_slug"] = ""
+    # cart_value is invalid if it is less than 0
     if cart_value < 0:
         invalid_params["cart_value"] = cart_value
-    if user_lat is None:
+    # user_lat is invalid if it is unspecified or outside the range [-90, +90] degrees
+    if user_lat is None or not (-90 <= user_lat <= 90):
         invalid_params["user_lat"] = user_lat
-    if user_lon is None:
+    # user_lon is invalid if it is unspecified or outside the range [-180, +180] degrees
+    if user_lon is None or not (-180 <= user_lat <= 180):
         invalid_params["user_lon"] = user_lon
 
     if invalid_params:
-        logging.error("Received invalid request")
+        logging.error(f"Received request at DOPC endpoint with invalid params: {invalid_params}")
         raise HTTPException(
             status_code=400,
             detail={
                 "message": "Invalid request. One or more parameters are missing or invalid.",
-                "missing/invalid": invalid_params,
+                "invalid_parameters": invalid_params,
                 "hint": "Please ensure to use correct parameter values",
             }
         )
@@ -86,6 +90,11 @@ async def getDeliveryOrderPrice(
     }
 
 if __name__ == "__main__":
-    port = getServicePort()
-    print(f"Started DOPC Service on port {port}")
-    uvicorn.run(dopc, host="127.0.0.1", port=port)
+    # Adding support for custom port. Defaults to port specified in config.py
+    parser = argparse.ArgumentParser()
+    default_port = getServicePort()
+    parser.add_argument('--port', type=int, help="The port on which the DOPC service will run", default=default_port)
+    args = parser.parse_args()
+    
+    print(f"Started DOPC Service on port {args.port}")
+    uvicorn.run(dopc, host="127.0.0.1", port=args.port)
